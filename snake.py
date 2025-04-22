@@ -25,7 +25,13 @@ def main(screen):
     # Initial direction of the snake
     key = curses.KEY_RIGHT
 
+    # Draw the border once outside the loop
+    w.border(0)
+
     while True:
+        # Adjust speed based on score
+        w.timeout(max(50, 150 - (len(snake) - 3) * 5))
+
         next_key = w.getch()
         if next_key == -1:
             next_key = key
